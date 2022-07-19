@@ -25,6 +25,66 @@ https://github.com/dougsm/ggcnn
 https://github.com/dougsm/mvp_grasp
 
 - Install dependencies from requirements.txt
+- Note Christian Milianti * I went into both links and combined both the requirements from  both into one requirements file which can be found in the main folder of this repo
+- I then installed requirements with
+```
+pip install -r requirements.txt
+```
+When i did the above, I had the following issues running the 2.grasping node
+
+- ImportError: No module named scipy.ndimage
+    - I fixed it by running the following 2 commands
+    ```
+        sudo apt-get install python-scipy
+        pip install scipy
+    ```
+-  ImportError: No module named torch
+    - I checked my cuda version with $ nvidia-smi , i then installed torch via following the instructions for pip linux python install found here https://pytorch.org/get-started/locally/
+
+    ```
+        pip3 install torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cu113
+    ```
+    - I faced another issue because it still wouldnt find the torch module, I assume its because it was a python 3 package, and it was looking for a python 2 packages, so it i tried installing an older version of torch+cpu
+    ```
+     pip install torch==1.3.1+cpu torchvision==0.4.2+cpu -f https://download.pytorch.org/whl/torch_stable.html
+
+    ```
+    - still didnt work, so i tried editing lines 24-30 of ggcnn.py from /ws_capstone/src/mvp_grasp-master/ggcnn/src/ggcnn/ggcnn.py" and changing it from gpu to cpu by commenting out the gpu lines and uncommenting the cpu lines... this still didnt work
+
+    - ok... scratch everything i just said
+    - i simply performed  after i installed the requirements from above by going into  /home/christian/ROS_Projects/vision_grasp_capstone/ws_capstone/src/mvp_grasp-master
+    ```
+    rosdep install --from-paths src --ignore-src --rosdistro=melodic -y
+    ```
+    - also think i installed the newer version of torch again but im not sure, since my gpu is new i dont think the old torch python 2 versions are supporting the newer cuda versions, so im going to run it on cpu only
+    by editing ggcnn as above.
+    ```
+  pip3 install torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cu113
+    ```
+    - then i got this error ImportError: No module named builtins, so i did this
+    ```
+    pip2 install future
+    ```
+
+when i tried running the object detection node i got the following errors:
+- ImportError: No module named skimage.transform
+    ```
+    pip2 install scikit-image
+    ```
+- IOError: /home/christian/ROS_Projects/vision_grasp_capstone/ws_capstone/src/mvp_grasp-master/yolov3_pytorch_ros-master/models/yolov3_tiny_custom_2000.weights not found.
+    - This is because they haven't uploaded their custom weights to github... to use other weights change what weights and config you want to use in their detector.launch file. they had the config for their custom yolo v3 tiny model, but not the weights.
+
+when i tried running the capstone scheduler i faced the error
+ - no module named moveit_commander
+ so i installed move it with
+ ``` 
+ sudo apt install ros-melodic-moveit
+```
+
+
+
+
+
 
 GGCNN generative grasping and ROS node modified from this research. This code also contains some higher level improvements for grasping implemented in task schedulers and could be worth a look at reintroducing. 
 - [GGCNN paper](https://arxiv.org/abs/1804.05172)

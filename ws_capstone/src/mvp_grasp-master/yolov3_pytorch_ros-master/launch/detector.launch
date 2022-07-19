@@ -2,8 +2,8 @@
 <launch>
     <!-- Camera topic and weights, config and classes files -->
     <arg name="image_topic"	                default="/camera/color/image_raw"/>
-    <arg name="weights_name"	            default="yolov3_tiny_custom_2000.weights"/>
-    <arg name="config_name"	                default="yolov3_tiny_custom.cfg"/>
+    <arg name="weights_name"	            default="yolov3-tiny.weights"/>
+    <arg name="config_name"	                default="yolov3-tiny.cfg"/>
     <arg name="classes_name"	            default="obj.names"/>
 
     <!-- Published topics -->
