@@ -2,9 +2,9 @@
 <launch>
     <!-- Camera topic and weights, config and classes files -->
     <arg name="image_topic"	                default="/camera/color/image_raw"/>
-    <arg name="weights_name"	            default="yolov3-tiny.weights"/>
-    <arg name="config_name"	                default="yolov3-tiny.cfg"/>
-    <arg name="classes_name"	            default="obj.names"/>
+    <arg name="weights_name"	            default="yolov3-tiny.weights"/><!--i changed this from yolov3_tiny_custom_2000.weights, im going to need to change either all 3 back if i get the weights file, or make my own weights and ammend the capstone_scheudler.py script-->
+    <arg name="config_name"	                default="yolov3-tiny.cfg"/> <!--i changed this from yolov3_tiny_custom.cfg-->
+    <arg name="classes_name"	            default="coco.names"/> <!-- i changed this from obj.names-->
 
     <!-- Published topics -->
     <arg name="publish_image"	            default="true"/>

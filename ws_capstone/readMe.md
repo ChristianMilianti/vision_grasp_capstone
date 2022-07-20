@@ -114,6 +114,20 @@ catkin_make
 source $HOME/catkin_ws/devel/setup.bash
 ```
 
+## how to import models into gazebo
+
+Solution taken from - https://answers.gazebosim.org//question/6347/downloading-models-fails/
+- You can download these models yourself from here  https://github.com/osrf/gazebo_models . I simply downloaded all of them >700mb.
+- And then put these models in /usr/share/gazebo-[VERSION]/models. 
+- You may need to chmod and change the folder permissions to allow you to add the models
+- to do this i found where my models folder was and then chmod 777 that folder only, then i was able to simply drag and drop my extracted models into that folder.
+```
+$ cd /usr/share/gazebo-9
+$ sudo chmod 700 models
+```
+- For example, my Gazebo version is 9, so I put all these model files inside /usr/share/gazebo-9/models
+- Then once you run the spawning and deleting objects commands in the instructions further below it should work
+
 
 ## Capstone Scheduler - 
 
@@ -147,10 +161,19 @@ Modifications to the code may be required where the camera topic names are defin
 
 ### Spawning and deleting objects in Gazebo
 ```
+#this spawns a coke can and a plastic cup
 rosrun mvp_grasping spawn_models.py
+
+#this deletes all models in the scene (but i need to look at it as it seems to not delete some)
 rosrun mvp_grasping delete_models.py
+
+#this lets you select from a list of items
 rosrun mvp_grasping objects_task1.py
+
+#this spawns a few items
 rosrun mvp_grasping objects_task2.py
+
+
 ```
 
 
