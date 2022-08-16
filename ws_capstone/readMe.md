@@ -247,3 +247,6 @@ Further information can be found on github for the respective libraries used reg
     - still didnt work, so i tried editing lines 24-30 of ggcnn.py from /ws_capstone/src/mvp_grasp-master/ggcnn/src/ggcnn/ggcnn.py" and changing it from gpu to cpu by commenting out the gpu lines and uncommenting the cpu lines... this still didnt work
 
    - ok... scratch everything i just said </s>
+
+   for info on how to use the real intel camera see https://github.com/IntelRealSense/realsense-ros
+   i installed via option 1 just to see if i could read from the outputted topics
